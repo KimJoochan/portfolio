@@ -1,0 +1,328 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            color: #333;
+            font-family: "나눔 고딕";
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        img {
+            border: 0px;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+    </style>
+    <link href="resize.css" type="text/css" rel="stylesheet">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header id="head">
+        <div class="wrap">
+            <div id="sub_nav">
+                <ul id="loginnav">
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">멤버쉽</a></li>
+                    <li><a href="#">신청조회</a></li>
+                </ul>
+            </div>
+            <nav id="mainNav">
+                <h1 id="logo"></h1>
+                <ul id="nav">
+                    <li><a href="#">고시원 찾기</a>
+                        <ul class="subNav">
+                            <li><a href="#">서울틀별시</a></li>
+                            <li><a href="#">부산광역시</a>
+                                <ul class="dowNav">
+                                    <li><a href="#">동래구</a></li>
+                                    <li><a href="#">부산진구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">광주광역시</a></li>
+                            <li><a href="#">전라도</a></li>
+                            <li><a href="#">경상도</a></li>
+                            <li><a href="#">충청도</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">객실</a></li>
+                    <li><a href="#">내부시설</a></li>
+                    <li><a href="#">부대시설</a></li>
+                    <li><a href="#">오시는 길</a></li>
+                    <li><a href="#">고객센터</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <script>
+        $('#nav>li').mouseenter(function() {
+            $(this).find('.subNav').stop().slideDown();
+        }).mouseleave(function() {
+            $('.subNav').stop().slideUp();
+        })
+        $('.subNav>li').mouseenter(function() {
+            $(this).find('.dowNav').stop().slideDown();
+        }).mouseleave(function() {
+            $('.dowNav').stop().slideUp();
+        });
+        $('.dowNav').mouseleave(function() {
+            $('.dowNav').stop().slideUp();
+        })
+
+    </script>
+    <div id="body">
+        <section id="banner" class="bodySub">
+            <ul id="ban_wrap">
+                <li><img src="imgs/1ban.jpg" alt="사진1"></li>
+                <li><img src="imgs/2ban.jpg" alt="사진1"></li>
+                <li><img src="imgs/3ban.jpg" alt="사진1"></li>
+            </ul>
+            <div class="wrap">
+                <!--나중에 노드js로 파일을 배열로 불러오기-->
+                <ul id="btn">
+                    <li id="left"><input type="button" value="◁"></li>
+                    <li id="right"><input type="button" value="▷"></li>
+                </ul>
+            </div>
+            <script>
+                $('#left').click(function() {
+                    $('#ban_wrap').animate({
+                        left: -$('#banner').width()
+                    }, function() {
+                        $('#ban_wrap>li').first().appendTo('#ban_wrap');
+                        $('#ban_wrap').css({
+                            left: 0
+                        })
+                    })
+                });
+                $('#right').click(function() {
+                    $('#ban_wrap>li').last().prependTo('#ban_wrap');
+                    $('#ban_wrap').css({
+                        left: -$('#banner').width()
+                    }).animate({
+                        left: 0
+                    });
+                })
+
+            </script>
+        </section>
+        <div class="wrap">
+            <section id="recom" class="bodySub">
+                <figure class="allBody">
+                    <h1 class="recTitle">추천 고시원룸</h1>
+                    <ul id="recChart">
+                        <li><img src="imgs/recom/1.jpg">
+                            <div class="moreView">
+                                <h1 class="recoTitle">홍대 고시원</h1>
+                                <input class="moreBtn" id="detail" type="button" value="자세히 보기">
+                                <input class="moreBtn" id="reser" type="button" value="예약하기">
+
+                            </div>
+                        </li>
+                        <li><img src="imgs/recom/2.jpg"></li>
+                        <li><img src="imgs/recom/3.jpg"></li>
+                        <li><img src="imgs/recom/4.jpg"></li>
+                        <li><img src="imgs/recom/5.jpg"></li>
+                        <li><img src="imgs/recom/6.jpg"></li>
+                    </ul>
+                </figure>
+            </section>
+            <section class="bodySub">
+                <figure class="allBody">
+                    <h1 class="abTitle">고시원 내부시설</h1>
+                    <div class="abMask">
+                        <!--나중에 노드에 맞쳐서 파일 배열에 개수로 보여주기-->
+                        <!--노드로 파일배열에 맞춰서 텍스트도 삽입-->
+                        <ul class="halfWrap" id="innerHal">
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/inner/sindorim.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">신도림역 고시원</h2>
+                                        <div class="sentence">갤럭시고시텔의 기본적인 품격을 갖춘 객실에서<br> 격이 다른 휴식과 여유를 경험해 보세요.<br>ALC벽돌시공으로 완벽한 방음처리<br>눈이 편안한 LED 조명</div>
+                                        <h3 class="halfSubTi">Normal Priver</h3>
+                                        <h4 class="halfDow">편안한 침대,책상,옷장,냉장고</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="half">
+                                    <li>
+                                        <img src="imgs/inner/busan.png">
+                                    </li>
+                                    <li>
+                                        <h2 class="halfTitle">신도림역 고시원</h2>
+                                        <div class="sentence">갤럭시고시텔의 기본적인 품격을 갖춘 객실에서<br> 격이 다른 휴식과 여유를 경험해 보세요.<br>ALC벽돌시공으로 완벽한 방음처리<br>눈이 편안한 LED 조명</div>
+                                        <h3 class="halfSubTi">Normal Priver</h3>
+                                        <h4 class="halfDow">편안한 침대,책상,옷장,냉장고</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/inner/seaoul.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">신도림역 고시원</h2>
+                                        <div class="sentence">갤럭시고시텔의 기본적인 품격을 갖춘 객실에서<br> 격이 다른 휴식과 여유를 경험해 보세요.<br>ALC벽돌시공으로 완벽한 방음처리<br>눈이 편안한 LED 조명</div>
+                                        <h3 class="halfSubTi">Normal Priver</h3>
+                                        <h4 class="halfDow">편안한 침대,책상,옷장,냉장고</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--나중에 노드에 맞쳐서 파일배열의 크기 만큼 버튼 증가-->
+                    <!--제이쿼리 넣을 시 클릭전 사진에서 현재 사진으로 넘어가기-->
+                    <ul id="inner" class="sub_btn">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <script>
+                        let current = 0;
+                        $('#inner>li').click(function() {
+                            var nowC = $(this).index();
+                            if (current == nowC) {
+                                return;
+                            }
+                            $("#innerHal>li").hide();
+                            $("#innerHal>li").eq(current).show().css({
+                                left: 0
+                            }).stop().animate({
+                                left: -$('.abMask').width()
+                            }, 2000);
+                            $("#innerHal>li").eq(nowC).show().css({
+                                left: $('.abMask').width()
+                            }).stop().animate({
+                                left: 0
+                            }, 2000);
+                            current = nowC;
+                        })
+
+                    </script>
+                </figure>
+            </section>
+            <section class="bodySub">
+                <figure class="allBody">
+                    <h1 class="abTitle">고시원 외부시설</h1>
+                    <div class="abMask">
+                        <!--나중에 노드에 맞쳐서 파일 배열에 개수로 보여주기-->
+                        <ul class="halfWrap" id="outerHal">
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/outer/1.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">신도림역 고시원</h2>
+                                        <div class="sentence">현대백화점, 롯데시네마, 테크노마트, CGV<br>대림정보 문화도서관, 도림천, 도림시장<br>영등포방면 1정거장<br>(신세계백화점, 타임스퀘어, 영등포시장 등)</div>
+                                        <h3 class="halfSubTi">Near the station</h3>
+                                        <h4 class="halfDow">환승 지하철 이용으로 교통의 중심지</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/outer/buzan.jpg"></li>
+                                    <li></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--나중에 노드에 맞쳐서 파일배열의 크기 만큼 버튼 증가-->
+                    <!--제이쿼리 넣을 시 클릭전 사진에서 현재 사진으로 넘어가기-->
+                    <ul id="outer" class="sub_btn">
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <script>
+                        let cur = 0;
+                        $('#outer>li').click(function() {
+                            var nowD = $(this).index();
+                            if (cur == nowD) {
+                                return;
+                            }
+                            $("#outerHal>li").hide();
+                            $("#outerHal>li").eq(cur).show().css({
+                                left: 0
+                            }).stop().animate({
+                                left: -$('.abMask').width()
+                            }, 2000);
+                            $("#outerHal>li").eq(nowD).show().css({
+                                left: $('.abMask').width()
+                            }).stop().animate({
+                                left: 0
+                            }, 2000);
+                            cur = nowD;
+                        })
+
+                    </script>
+                </figure>
+            </section>
+            <script>
+                $('.half').css({
+                    width: $('.allBody').width()
+                });
+
+            </script>
+            <section id="hidSection">
+                <section id="howCome" class="hid">
+                    <figure class="allBody">
+                        <h2 class="abTitle">본사로 오시는 길</h2>
+                        <ul class="hidHalf">
+                            <li><img src="imgs/howcome.PNG"></li>
+                            <li></li>
+                        </ul>
+                    </figure>
+                </section>
+                <section id="wirSec" class="hid">
+                    <figure class="allBody">
+                        <h2 class="abTitle">본사 게시판/FAQ</h2>
+                        <input type="button" value="글쓰기">
+                        <div id="faq">
+                            <ul class="list">
+                                <li>번호</li>
+                                <li>제목</li>
+                                <li>글쓴이</li>
+                                <li>날짜</li>
+                                <li>조회</li>
+                            </ul>
+                        </div>
+                    </figure>
+                </section>
+            </section>
+        </div>
+    </div>
+    <footer></footer>
+</body>
+
+</html>

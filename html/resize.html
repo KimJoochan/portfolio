@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            color: #333;
+            font-family: "나눔 고딕";
+            border: none;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        img {
+            border: 0px;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+    </style>
+    <link href="resize.css" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function() {
+
+            $('#left').click(function() {
+                $('#ban_wrap').animate({
+                    left: -$('#banner').width()
+                }, function() {
+                    $('#ban_wrap>li').first().appendTo('#ban_wrap');
+                    $('#ban_wrap').css({
+                        left: 0
+                    })
+                })
+            });
+            $('#right').click(function() {
+                $('#ban_wrap>li').last().prependTo('#ban_wrap');
+                $('#ban_wrap').css({
+                    left: -$('#banner').width()
+                }).animate({
+                    left: 0
+                });
+            }) //메인배너슬라이드
+            $('#nav>li').mouseenter(function() {
+                $(this).find('.subNav').stop().slideDown();
+            }).mouseleave(function() {
+                $('.subNav').stop().slideUp();
+            })
+            $('.subNav>li').mouseenter(function() {
+                $(this).find('.dowNav').stop().slideDown();
+            }).mouseleave(function() {
+                $('.dowNav').stop().slideUp();
+            });
+            $('.dowNav').mouseleave(function() {
+                $('.dowNav').stop().slideUp();
+            }) //메누바
+            let current = 0;
+            $('#inner>li').click(function() {
+                $('#inner>li').removeClass('on');
+                $(this).addClass('on');
+                var nowC = $(this).index();
+                if (current == nowC) {
+                    return;
+                }
+                $("#innerHal>li").hide();
+                $("#innerHal>li").eq(current).show().css({
+                    left: 0
+                }).animate({
+                    left: -$('.abMask').width()
+                }, 2000);
+                $("#innerHal>li").eq(nowC).show().css({
+                    left: $('.abMask').width()
+                }).animate({
+                    left: 0
+                }, 2000);
+                current = nowC;
+            }); //내부 고시원 상세보기 슬라이드
+            let cur = 0;
+            $('#outer>li').click(function() {
+                $('#outer>li').removeClass('on');
+                $(this).addClass('on');
+                var nowD = $(this).index();
+                if (cur == nowD) {
+                    return;
+                }
+                $("#outerHal>li").hide();
+                $("#outerHal>li").eq(cur).show().css({
+                    left: 0
+                }).animate({
+                    left: -$('.abMask').width()
+                }, 2000);
+                $("#outerHal>li").eq(nowD).show().css({
+                    left: $('.abMask').width()
+                }).animate({
+                    left: 0
+                }, 2000);
+                cur = nowD;
+            }) //고시원 외부 상세보기 슬라이드
+
+
+        })
+    </script>
+    <title></title>
+</head>
+
+<body>
+    <header id="head">
+        <div class="wrap">
+            <div id="sub_nav">
+                <ul id="loginnav">
+                    <li><a href="/log">로그인</a></li>
+                    <li><a href="/join">회원가입</a></li>
+                    <li><a href="#">멤버쉽</a></li>
+                    <li><a href="#">신청조회</a></li>
+                </ul>
+            </div>
+
+            <nav id="mainNav">
+                <h1 id="logo"></h1>
+                <ul id="nav">
+                    <li><a href="#">고시원 찾기</a>
+                        <ul class="subNav">
+                            <li><a href="#">서울틀별시</a></li>
+                            <li><a href="#">부산광역시</a>
+                                <ul class="dowNav">
+                                    <li><a href="#">동래구</a></li>
+                                    <li><a href="#">부산진구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                    <li><a href="#">금정구</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">광주광역시</a></li>
+                            <li><a href="#">전라도</a></li>
+                            <li><a href="#">경상도</a></li>
+                            <li><a href="#">충청도</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">객실</a></li>
+                    <li><a href="#">내부시설</a></li>
+                    <li><a href="#">부대시설</a></li>
+                    <li><a href="#">오시는 길</a></li>
+                    <li><a href="#">고객센터</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div id="tabNav">
+        <h1 id="tabBut"><img src="imgs/tabNav.png"></h1>
+        <ul id="tabLog">
+            <li><a href="#">로그인</a></li>
+            <li><a href="#">회원가입</a></li>
+        </ul>
+        <ul id="tabMainNav">
+            <li><a href="#">서울</a>
+                <ul class="tabSubNav">
+                    <li><a href="#">강북</a></li>
+                    <li><a href="#">강남</a></li>
+                    <li><a href="#">인천</a></li>
+                    <li><a href="#">여의도</a></li>
+                    <li><a href="#">의정부</a></li>
+                </ul>
+            </li>
+            <li><a href="#">부산</a>
+                <ul class="tabSubNav">
+                    <li><a href="#">강서구</a></li>
+                    <li><a href="#">동래구</a></li>
+                    <li><a href="#">부산진구</a></li>
+                    <li><a href="#">금정구</a></li>
+                    <li><a href="#">남포동</a></li>
+                </ul>
+            </li>
+            <li><a href="#">경기</a></li>
+            <li><a href="#">전라</a></li>
+            <li><a href="#">경상</a></li>
+            <li><a href="#">충청</a></li>
+            <li><a href="#">제주</a></li>
+        </ul>
+    </div>
+    <script>
+        let tabCli = 0;
+        $('#tabBut').click(function() {
+            if (tabCli % 2 == 0) {
+                $('#tabMainNav').slideDown(500);
+                tabCli = 1;
+            } else if (tabCli % 2 == 1) {
+                $('#tabMainNav').slideUp(500);
+                tabCli = 0;
+            }
+        });
+        let tabSub = 0;
+        $('#tabMainNav>li').click(function() {
+            if (tabSub == 0) {
+                $(this).find('.tabSubNav').stop().slideDown(500);
+                tabSub = 1;
+            } else if (tabSub == 1) {
+                $('.tabSubNav').stop().slideUp(500);
+                tabSub = 0;
+            }
+        })
+    </script>
+    <div id="body">
+        <section id="banner" class="bodySub">
+            <div id="pc_ban">
+                <ul id="ban_wrap">
+                    <li><img src="imgs/1ban.jpg" alt="사진1"></li>
+                    <li><img src="imgs/2ban.jpg" alt="사진1"></li>
+                    <li><img src="imgs/3ban.jpg" alt="사진1"></li>
+                    <li><img src="imgs/4ban.jpg" alt="사진1"></li>
+                </ul>
+                <script>
+                    $('#ban_wrap').click(function() {
+                        $('#ban_wrap').animate({
+                            left: -$('#banner').width()
+                        }, function() {
+                            $('#ban_wrap>li').first().appendTo('#ban_wrap');
+                            $('#ban_wrap').css({
+                                left: 0
+                            })
+                        })
+                    });
+                </script>
+                <!--나중에 노드js로 파일을 배열로 불러오기-->
+                <ul id="btn">
+                    <div class="wrap">
+                        <li id="left"><input type="button" value="◀"></li>
+                        <li id="right"><input type="button" value="▶"></li>
+                    </div>
+                </ul>
+            </div>
+            <div id="mb_ban">
+                <ul id="mb_ban_wrap">
+                    <li><img src="imgs/mb1ban.jpg" alt="사진1"></li>
+                    <li><img src="imgs/mb2ban.jpg" alt="사진1"></li>
+                    <li><img src="imgs/mb3ban.jpg" alt="사진1"></li>
+                </ul>
+            </div>
+        </section>
+        <script>
+            let mbBanclick = 0;
+            $('#mb_ban').click(function() {
+                mbBanclick++;
+                $('#mb_ban_wrap>li').fadeOut(500);
+                $('#mb_ban_wrap>li').eq(mbBanclick).fadeIn();
+                if (mbBanclick > 1) {
+                    mbBanclick = -1;
+                }
+            })
+        </script>
+
+        <div class="wrap">
+            <section id="recom" class="bodySub">
+                <h1 class="recTitle" id="mbTi">추천 고시원룸</h1>
+                <figure class="allBody" id="mbAllbody">
+                    <h1 class="recTitle" id="pcTit">추천 고시원룸</h1>
+                    <ul id="recChart">
+                        <li><img src="imgs/recom/1.jpg">
+                            <div class="moreView">
+                                <h1 class="recoTitle">홍대 고시원</h1>
+                                <input class="moreBtn" id="detail" type="button" value="자세히 보기">
+                                <input class="moreBtn" id="reser" type="button" value="예약하기">
+                            </div>
+                        </li>
+                        <li><img src="imgs/recom/3.jpg">
+                            <div class="moreView">
+                                <h1 class="recoTitle">광주 고시원</h1>
+                                <input class="moreBtn" id="detail" type="button" value="자세히 보기">
+                                <input class="moreBtn" id="reser" type="button" value="예약하기">
+                            </div>
+                        </li>
+                        <li><img src="imgs/recom/4.jpg">
+                            <div class="moreView">
+                                <h1 class="recoTitle">해운대 고시원</h1>
+                                <input class="moreBtn" id="detail" type="button" value="자세히 보기">
+                                <input class="moreBtn" id="reser" type="button" value="예약하기">
+                            </div>
+                        </li>
+                        <li><img src="imgs/recom/5.jpg">
+                            <div class="moreView">
+                                <h1 class="recoTitle">부산여대 고시원</h1>
+                                <input class="moreBtn" id="detail" type="button" value="자세히 보기">
+                                <input class="moreBtn" id="reser" type="button" value="예약하기">
+                            </div>
+                        </li>
+                        <li><img src="imgs/recom/6.jpg">
+                            <div class="moreView">
+                                <h1 class="recoTitle">송정 고시원</h1>
+                                <input class="moreBtn" id="detail" type="button" value="자세히 보기">
+                                <input class="moreBtn" id="reser" type="button" value="예약하기">
+                            </div>
+                        </li>
+                        <li><img src="imgs/recom/2.jpg">
+                            <div class="moreView">
+                                <h1 class="recoTitle">부산대 고시원</h1>
+                                <input class="moreBtn" id="detail" type="button" value="자세히 보기">
+                                <input class="moreBtn" id="reser" type="button" value="예약하기">
+                            </div>
+                        </li>
+                    </ul>
+                </figure>
+            </section>
+            <script>
+                $("#recChart>li").click(function() {
+                    $(this).find(".moreView").stop().fadeIn(500);
+                    let click_View = $(this).find(".moreView");
+                    setTimeout(function() {
+                        click_View.stop().slideUp(500);
+                    }, 2000)
+                })
+            </script>
+
+            <section class="bodySub" id="tab_rom">
+
+                <figure class="allBody">
+                    <h1 class="abTitle">고시원 내부시설</h1>
+                    <div class="abMask">
+                        <ul class="halfWrap" id="innerHal">
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/inner/sindorim.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">신도림역 고시원</h2>
+                                        <div class="sentence">갤럭시고시텔의 기본적인 품격을 갖춘 객실에서<br> 격이 다른 휴식과 여유를 경험해 보세요.<br>ALC벽돌시공으로 완벽한 방음처리<br>눈이 편안한 LED 조명</div>
+                                        <h3 class="halfSubTi">Normal Priver</h3>
+                                        <h4 class="halfDow">편안한 침대,책상,옷장,냉장고</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="half">
+                                    <li>
+                                        <img src="imgs/inner/busan.png">
+                                    </li>
+                                    <li>
+                                        <h2 class="halfTitle">노블Q 고시텔</h2>
+                                        <div class="sentence">노원구 공릉동의 넓고<br>쾌적 고시텔<br>내집 같이 편안하며<br>편안하게 휴식을 취할수 있음</div>
+                                        <h3 class="halfSubTi">Near Place</h3>
+                                        <h4 class="halfDow">서울여대, 과기대, 서울의료원 근방</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/inner/seaoul.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">하이빌 원룸텔</h2>
+                                        <div class="sentence">가족같은 따뜻함<br> 웃음과 행복이 공존하는 곳<br>편리한 교통<br>
+                                        </div>
+                                        <h3 class="halfSubTi">Comfortable</h3>
+                                        <h4 class="halfDow">미니룸과 미니원룸 타입</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--나중에 노드에 맞쳐서 파일배열의 크기 만큼 버튼 증가-->
+                    <!--제이쿼리 넣을 시 클릭전 사진에서 현재 사진으로 넘어가기-->
+                    <ul id="inner" class="sub_btn">
+                        <li class="on"></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </figure>
+            </section>
+            <section class="bodySub">
+
+                <figure class="allBody">
+                    <h1 class="abTitle">고시원 외부시설</h1>
+                    <div class="abMask">
+                        <!--나중에 노드에 맞쳐서 파일 배열에 개수로 보여주기-->
+                        <ul class="halfWrap" id="outerHal">
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/outer/1.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">신도림역 고시원</h2>
+                                        <div class="sentence">현대백화점, 롯데시네마, 테크노마트, CGV<br>대림정보 문화도서관, 도림천, 도림시장<br>영등포방면 1정거장<br>(신세계백화점, 타임스퀘어, 영등포시장 등)</div>
+                                        <h3 class="halfSubTi">Near the station</h3>
+                                        <h4 class="halfDow">환승 지하철 이용으로 교통의 중심지</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/outer/buzan.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">동양고시텔 </h2>
+                                        <div class="sentence">NC백화점, 부전시립도서관등
+                                            <br>이 도보로 1분-3분<br>서면지하철역<br>(한국고시학원, 공단기.한국경찰학원.캠버스고시학원 등)</div>
+                                        <h3 class="halfSubTi">Near the station</h3>
+                                        <h4 class="halfDow">환승 지하철 이용으로 교통의 중심지</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <ul class="half">
+                                    <li><img src="imgs/outer/hongdea.jpg"></li>
+                                    <li>
+                                        <h2 class="halfTitle">하나고시텔</h2>
+                                        <div class="sentence">부산여자대학교, 동의과학대학교
+                                            <br>홍제병원, 동의대학교 평생교육원<br>양정 지하철역<br></div>
+                                        <h3 class="halfSubTi">Convenience</h3>
+                                        <h4 class="halfDow"> 따뜻하고 편안한 공간</h4>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--나중에 노드에 맞쳐서 파일배열의 크기 만큼 버튼 증가-->
+                    <!--제이쿼리 넣을 시 클릭전 사진에서 현재 사진으로 넘어가기-->
+                    <ul id="outer" class="sub_btn">
+                        <li class="on"></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </figure>
+
+            </section>
+            <script>
+                $(".half").click(function() {
+                    $(this).find('li').eq(1).fadeIn(500);
+                    let ci_ha = $(this).find('li');
+                    setTimeout(function() {
+                        ci_ha.eq(1).hide();
+                    }, 2500)
+                })
+            </script>
+            <section id="hidSection">
+                <section id="howCome" class="hid">
+                    <figure class="allBody">
+                        <h2 class="abTitle">본사로 오시는 길</h2>
+                        <ul class="hidHalf">
+                            <li><img src="imgs/howcome.PNG"></li>
+                            <li>
+                                <p>부산광역시 부산진구 양정동 양지로 54</p>
+                                <p>538F+82 Busan</p>
+                                <p>dit.ac.kr</p>
+                                <p>051-524-0240</p>
+                                <p>54 Yangji-ro, Yangjeong-dong, Busanjin-gu, Busan</p>
+                            </li>
+                        </ul>
+                    </figure>
+                </section>
+                <section id="wirSec" class="hid">
+                    <figure class="allBody">
+                        <h2 class="abTitle">본사 게시판</h2>
+                        <a id="wirte" href="/writing">글쓰기</a>
+                        <div id="faq">
+                            <ul class="list">
+                                <li>번호</li>
+                                <li>제목</li>
+                                <li>글쓴이</li>
+                                <li>날짜</li>
+                                <li>조회</li>
+                            </ul>
+                            <ul class="list">
+                                <li>1</li>
+                                <li><a href="/mysql/1" title="내용을 볼수 있음">Notice</a></li>
+                                <li><a href="/sql/answer/1" title="답글을 달 수 있음">jc524</a></li>
+                                <li>2018-11-15 18:39:07</li>
+                                <li>19</li>
+                            </ul>
+
+                            <ul class="list">
+                                <li>2</li>
+                                <li><a href="/mysql/2" title="내용을 볼수 있음">jsdvlkdsjvdlk</a></li>
+                                <li><a href="/sql/answer/2" title="답글을 달 수 있음">jc524</a></li>
+                                <li>2018-11-16 13:56:58</li>
+                                <li>12</li>
+                            </ul>
+                        </div>
+                    </figure>
+                </section>
+            </section>
+        </div>
+    </div>
+</body>
+
+</html>
